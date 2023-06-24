@@ -23,13 +23,11 @@ function App() {
           <p className="font-bold text-xl">Ascape</p>
         </div>
         <div className="flex gap-3.5 border border-gray-300 rounded-full py-2 px-4 shadow-md shadow-gray-300">
-          <div className="py-3">Anywhere</div>
-          <div className="border-l border-gray-300 px-5 py-3">
-            Any week
-          </div>
-          <div className="border-l border-gray-300 px-3 py-3">
-            Add guests
-          </div>
+          <div>Anywhere</div>
+          <div className="border-l border-gray-300"></div>
+          <div>Any week</div>
+          <div className="border-l border-gray-300"></div>
+          <div>Add guests</div>
           <button className="text-black p-1 rounded-full">
             <svg
               xmlns="http://www.w3.org/2000/svg"
