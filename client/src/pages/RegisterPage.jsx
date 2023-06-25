@@ -7,9 +7,14 @@ export default function RegisterPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const registerUser = (e) => {
+  const registerUser = async (e) => {
     e.preventDefault();
-    axios.post('/register', { name, email, password });
+    try {
+      await axios.post('/register', { name, email, password });
+      alert('works');
+    } catch (e) {
+      alert('failed');
+    }
   };
 
   return (
@@ -39,7 +44,7 @@ export default function RegisterPage() {
           <div className="text-center py-2 text-gray-500">
             Already a member? {'->'}{' '}
             <Link className="underline text-black" to={'/login'}>
-              Create
+              Login
             </Link>
           </div>
         </form>
