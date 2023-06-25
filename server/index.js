@@ -12,6 +12,9 @@ app.use(express.json());
 app.use(
   cors({
     credentials: true,
+    // MAC
+    // origin: 'http://localhost:5173',
+    // PC
     origin: 'http://127.0.0.1:5173',
   })
 );
