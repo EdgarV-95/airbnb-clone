@@ -70,7 +70,7 @@ export default function Header() {
               />
             </svg>
           </div>
-          <Link to={'/login'}>
+          <Link to={user ? '/account' : '/login'}>
             <div className="flex items-center justify-between gap-2">
               <div>
                 <svg
