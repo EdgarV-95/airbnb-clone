@@ -1,8 +1,38 @@
+import { useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 
 export default function PlacesPage() {
   const { action } = useParams();
-  console.log(action);
+
+  const [address, setAddress] = useState('');
+  const [title, setTitle] = useState('');
+  const [addedPhotos, setAddedPhotos] = useState([]);
+  const [photoLink, setPhotoLink] = useState('');
+  const [description, setDescription] = useState('');
+  const [perks, setPerks] = useState([]);
+  const [extraInfo, setExtraInfo] = useState('');
+  const [checkIn, setCheckIn] = useState('');
+  const [checkOut, setCheckOut] = useState('');
+  const [maxGuests, setMaxGuests] = useState();
+
+  function inputHeader(text) {
+    return <h2 className="text-2xl mt-4">{text}</h2>;
+  }
+
+  function inputDescription(text) {
+    return <p className="text-gray-500 text-sm">{text}</p>;
+  }
+
+  function preInput(header, description) {
+    return (
+      <>
+        {inputHeader(header)}
+        {inputDescription(description)}
+      </>
+    );
+  }
+
+  function addPhotoByLink() {}
 
   return (
     <div>
@@ -33,18 +63,21 @@ export default function PlacesPage() {
       {action === 'new' && (
         <div>
           <form>
-            <h2 className="text-2xl mt-4">Title</h2>
-            <p className="text-gray-500 text-sm">
-              Title for your place
-            </p>
-            <input type="text" placeholder="Title" />
-            <h2 className="text-2xl mt-4">Address</h2>
-            <p className="text-gray-500 text-sm">
-              Address to your place
-            </p>
-            <input type="text" placeholder="Address" />
-            <h2 className="text-2xl mt-4">Photos</h2>
-            <p className="text-gray-500 text-sm">More is better</p>
+            {preInput('Title', 'Title for your place')}
+            <input
+              type="text"
+              placeholder="Title"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+            />
+            {preInput('Address', 'Address to your place')}
+            <input
+              type="text"
+              placeholder="Address"
+              value={address}
+              onChange={(e) => setAddress(e.target.value)}
+            />
+            {preInput('Photos', 'More is better')}
             <div className="flex gap-2">
               <input type="text" placeholder="Add using a link" />
               <button className="bg-gray-200 px-4 rounded-2xl">
@@ -71,17 +104,14 @@ export default function PlacesPage() {
               </button>
             </div>
             <div>
-              <h2 className="text-2xl mt-4">Description</h2>
-              <p className="text-gray-500 text-sm">
-                Description of your place
-              </p>
-              <textarea />
+              {preInput('Description', 'Description of your place')}
+              <textarea
+                value={description}
+                onChange={setDescription}
+              />
             </div>
             <div>
-              <h2 className="text-2xl mt-4">Perks</h2>
-              <p className="text-gray-500 text-sm">
-                What parks do you offer?
-              </p>
+              {preInput('Perks', 'What parks do you offer?')}
               <div className="grid grid-cols-3 gap-5">
                 <label className="border p-4 flex rounded-2xl justify-center gap-2">
                   <input type="checkbox" />
@@ -196,16 +226,45 @@ export default function PlacesPage() {
               </div>
             </div>
             <div>
-              <h2 className="text-2xl mt-4">Extra info</h2>
-              <p className="text-gray-500 text-sm">
-                House rules, etc
-              </p>
-              <textarea />
+              {preInput('Extra info<', 'House rules, etc')}
+              <textarea value={extraInfo} onChange={setExtraInfo} />
             </div>
-            <h2 className="text-2xl mt-4">
-              Check in & check out times
-            </h2>
-            <button className="primary">Save</button>
+            <div>
+              {inputHeader('Check in & check out times')}
+              <div className="grid sm:grid-cols-3 gap-5">
+                <div>
+                  <h3 className="mt-2 -mb-1">Check in time</h3>
+                  <input
+                    type="time"
+                    placeholder="9:00"
+                    value={checkIn}
+                    onChange={(e) => setCheckIn(e.target.value)}
+                  />
+                </div>
+                <div>
+                  <h3 className="mt-2 -mb-1">Check out time</h3>
+                  <input
+                    type="time"
+                    placeholder="16:00"
+                    value={checkOut}
+                    onChange={(e) => setCheckOut(e.target.value)}
+                  />
+                </div>
+                <div>
+                  <h3 className="mt-2 -mb-1">
+                    Maximum number of guests
+                  </h3>
+                  <input
+                    type="number"
+                    placeholder="4"
+                    value={maxGuests}
+                    onChange={(e) => setMaxGuests(e.target.value)}
+                  />
+                </div>
+              </div>
+            </div>
+
+            <button className="primary my-4">Save</button>
           </form>
         </div>
       )}
